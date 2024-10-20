@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Tablero de Pobreza y Pobreza Extrema con Google Charts</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+
+        google.charts.setOnLoadCallback(drawPovertyEvolutionChart);
+        google.charts.setOnLoadCallback(drawPercentageChart);
+        google.charts.setOnLoadCallback(drawPopulationChart);
+        google.charts.setOnLoadCallback(drawExtremePovertyPercentageChart);
+        google.charts.setOnLoadCallback(drawExtremePovertyPopulationChart);
+
+        function drawPovertyEvolutionChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Año', 'Número de Personas (millones)'],
+                ['2008', 49.5],
+                ['2018', 52.4]
+            ]);
+
+            var options = {
+                title: 'Evolución del Número de Personas en Pobreza (2008-2018)',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                hAxis: { title: 'Año' },
+                vAxis: { title: 'Millones de Personas' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('poverty_evolution_chart'));
+            chart.draw(data, options);
+        }
+
+        function drawPercentageChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Año', 'Chiapas', 'Guerrero', 'Oaxaca', 'Tlaxcala'],
+                ['2008', 77.0, 68.4, 61.8, 59.6],
+                ['2018', 76.4, 66.5, 66.4, 48.4]
+            ]);
+
+            var options = {
+                title: 'Porcentaje de Población en Situación de Pobreza (2008-2018)',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                hAxis: { title: 'Año' },
+                vAxis: { title: 'Porcentaje (%)' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('poverty_percentage_chart'));
+            chart.draw(data, options);
+        }
+
+        function drawPopulationChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Entidad Federativa', '2008 (miles)', '2018 (miles)'],
+                ['México', 6578.2, 7546.5],
+                ['Veracruz', 3879.0, 5088.6],
+                ['Puebla', 3705.6, 3763.7],
+                ['Chiapas', 3682.3, 4174.6]
+            ]);
+
+            var options = {
+                title: 'Número de Personas en Pobreza por Entidad Federativa (2008-2018)',
+                bars: 'horizontal',
+                hAxis: { title: 'Miles de Personas' },
+                vAxis: { title: 'Entidad Federativa' }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('poverty_population_chart'));
+            chart.draw(data, options);
+        }
+
+        function drawExtremePovertyPercentageChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Año', 'Chiapas', 'Guerrero', 'Oaxaca'],
+                ['2008', 38.7, 32.4, 28.3],
+                ['2018', 29.7, 26.8, 23.3]
+            ]);
+
+            var options = {
+                title: 'Porcentaje de Población en Pobreza Extrema (2008-2018)',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                hAxis: { title: 'Año' },
+                vAxis: { title: 'Porcentaje (%)' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('extreme_poverty_percentage_chart'));
+            chart.draw(data, options);
+        }
+
+        function drawExtremePovertyPopulationChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Entidad Federativa', '2008 (miles)', '2018 (miles)'],
+                ['Chiapas', 1850.8, 1623.3],
+                ['Veracruz', 1276.4, 1457.9]
+            ]);
+
+            var options = {
+                title: 'Número de Personas en Pobreza Extrema por Entidad Federativa (2008-2018)',
+                bars: 'horizontal',
+                hAxis: { title: 'Miles de Personas' },
+                vAxis: { title: 'Entidad Federativa' }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('extreme_poverty_population_chart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1 style="text-align: center;">Tablero de Pobreza y Pobreza Extrema (2008-2018)</h1>
+
+    <div id="poverty_evolution_chart" style="width: 900px; height: 500px; margin: 0 auto;"></div>
+    <div id="poverty_percentage_chart" style="width: 900px; height: 500px; margin: 50px auto;"></div>
+    <div id="poverty_population_chart" style="width: 900px; height: 500px; margin: 50px auto;"></div>
+    <div id="extreme_poverty_percentage_chart" style="width: 900px; height: 500px; margin: 50px auto;"></div>
+    <div id="extreme_poverty_population_chart" style="width: 900px; height: 500px; margin: 50px auto;"></div>
+
+</body>
+
+</html>
